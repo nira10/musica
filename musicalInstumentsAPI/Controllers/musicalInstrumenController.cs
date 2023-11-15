@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using The_piano_house.Entities;
+using musicalInstumentsAPI.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace The_piano_house.Controllers
+namespace musicalInstumentsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,14 +16,14 @@ namespace The_piano_house.Controllers
         }
         // GET: api/<MusicaLInstrumentController>
         [HttpGet]
-        public List<MusicaLInstrument> Get()
+        public List<MusicalInstrumen> Get()
         {
-            return  _conect.MusicaLInstrumentList;
+            return _conect.MusicaLInstrumentList;
         }
 
         // GET api/<MusicaLInstrumentController>/5
         [HttpGet("{id}")]
-        public ActionResult< MusicaLInstrument> Get(int id)
+        public ActionResult<MusicalInstrumen> Get(int id)
         {
             var ev = _conect.MusicaLInstrumentList.Find(e => e.code == id);
 
@@ -35,15 +35,15 @@ namespace The_piano_house.Controllers
 
         // POST api/<MusicaLInstrumentController>
         [HttpPost]
-        public void Post([FromBody] MusicaLInstrument m)
+        public void Post([FromBody] MusicalInstrumen m)
         {
 
-            _conect.MusicaLInstrumentList.Add(new MusicaLInstrument {code = _conect.index++, name = m.name, manufacturer = m.manufacturer, costPrice = m.costPrice, purchasePrice = m.purchasePrice, stockpile = m.stockpile, providerCode = m.providerCode });
+            _conect.MusicaLInstrumentList.Add(new MusicalInstrumen { code = _conect.index++, name = m.name, manufacturer = m.manufacturer, costPrice = m.costPrice, purchasePrice = m.purchasePrice, stockpile = m.stockpile, providerCode = m.providerCode });
         }
 
         // PUT api/<MusicaLInstrumentController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] MusicaLInstrument m)
+        public ActionResult Put(int id, [FromBody] MusicalInstrumen m)
         {
             var ev = _conect.MusicaLInstrumentList.Find(e => e.code == id);
 
@@ -55,8 +55,8 @@ namespace The_piano_house.Controllers
             ev.purchasePrice = m.purchasePrice;
             ev.stockpile = m.stockpile;
             ev.providerCode = m.providerCode;
-            return Ok();  
-            
+            return Ok();
+
         }
 
         // DELETE api/<MusicaLInstrumentController>/5

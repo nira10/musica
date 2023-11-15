@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using The_piano_house.Entities;
+using musicalInstumentsAPI.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace The_piano_house.Controllers
+namespace musicalInstumentsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -26,14 +26,14 @@ namespace The_piano_house.Controllers
 
         // GET api/<CustomersController>/5
         [HttpGet("{id}")]
-        public ActionResult< Customers> Get(int id)
+        public ActionResult<Customers> Get(int id)
         {
             var ev = _conect.CustomersList.Find(e => e.id == id);
 
             if (ev == null)
                 return NotFound();
 
-                return ev;
+            return ev;
         }
 
 
@@ -43,7 +43,7 @@ namespace The_piano_house.Controllers
         {
             if (c.id.ToString().Length != 9)
                 return BadRequest();
-            _conect.CustomersList.Add(new Customers { id =c.id,name=c.name,phone=c.phone,address=c.address,lastPurchaseDate=c.lastPurchaseDate  });
+            _conect.CustomersList.Add(new Customers { id = c.id, name = c.name, phone = c.phone, address = c.address, lastPurchaseDate = c.lastPurchaseDate });
             return Ok();
         }
 
@@ -60,11 +60,11 @@ namespace The_piano_house.Controllers
                 return NotFound();
             ev.name = c.name;
             ev.address = c.address;
-            ev.lastPurchaseDate= c.lastPurchaseDate;
-            ev.phone= c.phone;
-         
-            
-             return Ok();
+            ev.lastPurchaseDate = c.lastPurchaseDate;
+            ev.phone = c.phone;
+
+
+            return Ok();
         }
 
         // DELETE api/<CustomersController>/5
@@ -74,11 +74,12 @@ namespace The_piano_house.Controllers
             var ev = _conect.CustomersList.Find(e => e.id == id);
 
             if (ev == null)
-                return NotFound();             
-          _conect.CustomersList.Remove(ev);
-            return Ok();      
-                
-            
+                return NotFound();
+            _conect.CustomersList.Remove(ev);
+            return Ok();
+
+
         }
     }
 }
+

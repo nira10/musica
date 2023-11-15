@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using The_piano_house.Entities;
+using musicalInstumentsAPI.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace The_piano_house.Controllers
+namespace musicalInstumentsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,12 +19,12 @@ namespace The_piano_house.Controllers
         [HttpGet]
         public List<Provider> Get()
         {
-            return _conect.ProviderList ;
+            return _conect.ProviderList;
         }
 
         // GET api/<ProviderController>/5
         [HttpGet("{id}")]
-        public ActionResult< Provider> Get(int id)
+        public ActionResult<Provider> Get(int id)
         {
             var ev = _conect.ProviderList.Find(e => e.id == id);
 
@@ -40,7 +40,7 @@ namespace The_piano_house.Controllers
             if (p.id.ToString().Length != 9)
                 return BadRequest();
 
-            _conect.ProviderList.Add(new Provider { id =p.id, name = p.name, phone = p.phone, address = p.address });
+            _conect.ProviderList.Add(new Provider { id = p.id, name = p.name, phone = p.phone, address = p.address });
             return Ok();
         }
 
@@ -53,13 +53,13 @@ namespace The_piano_house.Controllers
 
             if (ev == null)
                 return NotFound();
-                  ev.name = p.name;
-                  ev.address = p.address;
-                  ev.phone = p.phone;
-                  
+            ev.name = p.name;
+            ev.address = p.address;
+            ev.phone = p.phone;
+
             return Ok();
-                
-            
+
+
         }
 
         // DELETE api/<ProviderController>/5
